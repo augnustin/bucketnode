@@ -1,0 +1,12 @@
+{
+  "name": "bucket-node",
+  "version": "0.0.1",
+  "description": "Open Source Dropbox Clone with NodeJS and S3",
+  "author": "Augustin Riedinger <augustin.riedinger@gmail.com>",
+  "scripts": {
+    "start": "nodejs server.js"
+  },
+  "dependencies": {
+    "underscore": "*"
+  }
+}
