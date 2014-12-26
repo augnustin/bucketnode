@@ -1,13 +1,5 @@
 var fs = require('fs');
 var util = require('util');
-// var _ = require('underscore');
-
-var path = '/home/augustin/Bucket';
-
-// fs.stat(path, function (err, stats) {
-//   if (err) throw err;
-//   console.log('stats: ' + JSON.stringify(stats));
-// });
 
 // TODO: Use native method instead
 fs.join = function(path, file) {
@@ -43,13 +35,41 @@ fs.watchRecursive = function(foldername, options, listener) {
   return watcher;
 }
 
-var rWatcher = fs.watchRecursive(path, {}, function (event, filename) {
-  if (filename) {
-    if (!fs.isFileHidden(filename)) {
-      var filepath = fs.join(path, filename);
-      console.log(filepath + ' changed');
+
+var watchFolder = function(path) {
+  console.log('Watching '+path);
+  var rWatcher = fs.watchRecursive(path, {}, function (event, filename) {
+    if (filename) {
+      if (!fs.isFileHidden(filename)) {
+        var filepath = fs.join(path, filename);
+        console.log(filepath + ' changed');
+      }
+    } else {
+      console.log('unknown file changed');
     }
-  } else {
-    console.log('unknown file changed');
-  }
-});
+  });
+};
+
+var syncAll = function(path) {
+  console.log('Syncing '+path);
+};
+
+var syncFile = function(filename) {
+  console.log('Syncing File '+filename);
+};
+
+var syncLocalFromRemote = function(filename) {
+  console.log('Syncing from Remote: '+filename);
+};
+
+var syncRemoteFromLocal = function(filename) {
+  console.log('Syncing from Local: '+filename);
+};
+
+var start = function() {
+  var path = '/home/augustin/Bucket';
+  syncAll(path);
+  watchFolder(path);
+};
+
+start();
