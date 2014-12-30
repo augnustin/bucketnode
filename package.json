@@ -7,6 +7,6 @@
     "start": "nodejs server.js"
   },
   "dependencies": {
-    "underscore": "*"
+    "nconf": "~0.7.1"
   }
 }

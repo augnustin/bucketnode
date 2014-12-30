@@ -1,5 +1,11 @@
 var fs = require('fs');
 var util = require('util');
+var nconf = require('nconf');
+
+nconf.argv()
+     .env()
+     .file({ file: './config.json' });
+
 
 // TODO: Use native method instead
 fs.join = function(path, file) {
@@ -70,6 +76,7 @@ var start = function() {
   var path = '/home/augustin/Bucket';
   syncAll(path);
   watchFolder(path);
+  console.log('S3 Bucket: ' + nconf.get('bucket'));
 };
 
 start();
