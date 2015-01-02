@@ -4,9 +4,14 @@
   "description": "Open Source Dropbox Clone with NodeJS and S3",
   "author": "Augustin Riedinger <augustin.riedinger@gmail.com>",
   "scripts": {
-    "start": "nodejs server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
-    "nconf": "~0.7.1"
+    "nconf": "~0.7.1",
+    "aws-sdk": "~2.1.4",
+    "nedb": "~1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "~1.2.1"
   }
 }
