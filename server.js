@@ -14,41 +14,27 @@ var initConfit = function() {
  
 }
 
-var watchFolder = function(path) {
-  console.log('Watching '+path);
-  var rWatcher = fs.watchRecursive(path, {}, function (event, filename) {
+var watchFolder = function(folder) {
+  console.log('Watching '+folder);
+  var recWatcher = fs.watchRecursive(folder, {}, function (event, filename) {
+    console.log(filename);
     if (filename) {
       if (!fs.isFileHidden(filename)) {
-        // var filepath = fs.join(path, filename);
+        // var filepath = fs.join(folder, filename);
         sync.syncFile(filename);
         console.log(filename + ' changed');
       }
     } else {
       console.log('unknown file changed');
     }
+  }, function(filename) {
+    sync.syncFile(filename);
   });
-};
-
-var syncAll = function(path) {
-  console.log('Syncing '+path);
-};
-
-var syncFile = function(filename) {
-  console.log('Syncing File '+filename);
-};
-
-var syncLocalFromRemote = function(filename) {
-  console.log('Syncing from Remote: '+filename);
-};
-
-var syncRemoteFromLocal = function(filename) {
-  console.log('Syncing from Local: '+filename);
 };
 
 var start = function() {
   var path = '/home/augustin/Bucket';
   initConfit();
-  syncAll(path);
   watchFolder(path);
   // console.log('S3 Bucket: ' + nconf.get('bucket'));
 };
